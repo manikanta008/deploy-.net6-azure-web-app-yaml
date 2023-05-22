@@ -26,7 +26,7 @@ stages:
           - task: DotNetCoreCLI@2
             displayName: "Dotnet Build"
             inputs:
-              projects: src.sln # solution file or project files
+              projects: "**/*.csproj" # solution file or project files
               command: "build"
               arguments: "--configuration $(buildConfiguration)"
 
