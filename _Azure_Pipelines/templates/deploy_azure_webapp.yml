@@ -23,11 +23,12 @@ stages:
             inputs:
               restoreSolution: '$(solution)'
 
-          - task: DotNetCoreCLI@2
-            displayName: "Dotnet Build"
+          - task: VSBuild@1
             inputs:
-              command: "build"
-              arguments: "--configuration $(buildConfiguration)"
+              solution: '$(solution)'
+              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+              platform: '$(buildPlatform)'
+              configuration: '$(buildConfiguration)'
 
           # Publish projects to specified folder.
           - task: DotNetCoreCLI@2
