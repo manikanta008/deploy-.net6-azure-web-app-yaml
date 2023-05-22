@@ -19,14 +19,9 @@ stages:
               performMultiLevelLookup: true
               includePreviewVersions: true # Required for preview versions
 
-          - task: DotNetCoreCLI@2
-            displayName: "Dotnet Restore"
+          - task: NuGetCommand@2
             inputs:
-              command: "restore"
-              feedsToUse: "select"
-              feedRestore: "store/feedName"
-              projects: "**/*.csproj"
-              includeNuGetOrg: true
+              restoreSolution: '$(solution)'
 
           - task: DotNetCoreCLI@2
             displayName: "Dotnet Build"
