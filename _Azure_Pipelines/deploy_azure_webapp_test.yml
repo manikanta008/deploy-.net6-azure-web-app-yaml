@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - dev
+      - main
 
 variables:
   solution: "**/*.sln"
@@ -9,11 +9,11 @@ variables:
   buildConfiguration: "Release"
 
 pool:
-  name: Default
+  vmImage: 'windows-latest'
 
 stages:
   - template: templates/deploy_azure_webapp.yml
     parameters:
-      azureSubscription: "admin-t-service-connection"
-      webAppName: "admin-t-weu-aps01"
-      sourceBranchTrigger: "refs/heads/dev"
+      azureSubscription: "My-Service-Connection"
+      webAppName: "Sample-Web-App1"
+      sourceBranchTrigger: "refs/heads/main"
